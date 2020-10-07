@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1602041427128.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "390027538",
+    "id" : "19C546E8",
+    "lastKnownWriteTime" : 1602041051,
+    "last_content_update" : 1602041051,
+    "path" : "~/Maestria/ProductDevelopment/Laboratorio1/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
