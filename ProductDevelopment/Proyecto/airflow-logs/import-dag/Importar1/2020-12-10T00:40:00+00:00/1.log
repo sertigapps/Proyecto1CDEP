@@ -1,0 +1,49 @@
+[2020-12-11 00:13:52,448] {taskinstance.py:670} INFO - Dependencies all met for <TaskInstance: import-dag.Importar1 2020-12-10T00:40:00+00:00 [queued]>
+[2020-12-11 00:13:52,498] {taskinstance.py:670} INFO - Dependencies all met for <TaskInstance: import-dag.Importar1 2020-12-10T00:40:00+00:00 [queued]>
+[2020-12-11 00:13:52,500] {taskinstance.py:880} INFO - 
+--------------------------------------------------------------------------------
+[2020-12-11 00:13:52,504] {taskinstance.py:881} INFO - Starting attempt 1 of 2
+[2020-12-11 00:13:52,508] {taskinstance.py:882} INFO - 
+--------------------------------------------------------------------------------
+[2020-12-11 00:13:52,537] {taskinstance.py:901} INFO - Executing <Task(PythonOperator): Importar1> on 2020-12-10T00:40:00+00:00
+[2020-12-11 00:13:52,547] {standard_task_runner.py:54} INFO - Started process 508 to run task
+[2020-12-11 00:13:52,597] {standard_task_runner.py:77} INFO - Running: ['airflow', 'run', 'import-dag', 'Importar1', '2020-12-10T00:40:00+00:00', '--job_id', '16', '--pool', 'default_pool', '--raw', '-sd', 'DAGS_FOLDER/import-dag.py', '--cfg_path', '/tmp/tmpd6l9ukw8']
+[2020-12-11 00:13:52,600] {standard_task_runner.py:78} INFO - Job 16: Subtask Importar1
+[2020-12-11 00:13:52,708] {logging_mixin.py:112} INFO - Running %s on host %s <TaskInstance: import-dag.Importar1 2020-12-10T00:40:00+00:00 [running]> 7d635893eab6
+[2020-12-11 00:13:52,755] {import-dag.py:28} INFO - =====Ejecutando Tarea de Importacion =============
+[2020-12-11 00:13:52,756] {import-dag.py:29} INFO - ===== Archivo  =============
+[2020-12-11 00:13:52,758] {import-dag.py:30} INFO - time_series_covid19_confirmed_global
+[2020-12-11 00:13:52,759] {import-dag.py:31} INFO - ===== Tabla  =============
+[2020-12-11 00:13:52,761] {taskinstance.py:1150} ERROR - 'tabla'
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 984, in _run_raw_task
+    result = task_copy.execute(context=context)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/operators/python_operator.py", line 113, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/operators/python_operator.py", line 118, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/import-dag.py", line 32, in importarCsv
+    logger.info(kwargs['tabla'])
+KeyError: 'tabla'
+[2020-12-11 00:13:52,769] {taskinstance.py:1194} INFO - Marking task as UP_FOR_RETRY. dag_id=import-dag, task_id=Importar1, execution_date=20201210T004000, start_date=20201211T001352, end_date=20201211T001352
+[2020-12-11 00:13:57,479] {local_task_job.py:102} INFO - Task exited with return code 1
+[2020-12-11 00:26:25,930] {taskinstance.py:670} INFO - Dependencies all met for <TaskInstance: import-dag.Importar1 2020-12-10T00:40:00+00:00 [queued]>
+[2020-12-11 00:26:25,971] {taskinstance.py:670} INFO - Dependencies all met for <TaskInstance: import-dag.Importar1 2020-12-10T00:40:00+00:00 [queued]>
+[2020-12-11 00:26:25,972] {taskinstance.py:880} INFO - 
+--------------------------------------------------------------------------------
+[2020-12-11 00:26:25,974] {taskinstance.py:881} INFO - Starting attempt 1 of 2
+[2020-12-11 00:26:25,975] {taskinstance.py:882} INFO - 
+--------------------------------------------------------------------------------
+[2020-12-11 00:26:26,003] {taskinstance.py:901} INFO - Executing <Task(PythonOperator): Importar1> on 2020-12-10T00:40:00+00:00
+[2020-12-11 00:26:26,009] {standard_task_runner.py:54} INFO - Started process 228 to run task
+[2020-12-11 00:26:26,053] {standard_task_runner.py:77} INFO - Running: ['airflow', 'run', 'import-dag', 'Importar1', '2020-12-10T00:40:00+00:00', '--job_id', '38', '--pool', 'default_pool', '--raw', '-sd', 'DAGS_FOLDER/import-dag.py', '--cfg_path', '/tmp/tmpumf_bjsk']
+[2020-12-11 00:26:26,057] {standard_task_runner.py:78} INFO - Job 38: Subtask Importar1
+[2020-12-11 00:26:26,153] {logging_mixin.py:112} INFO - Running %s on host %s <TaskInstance: import-dag.Importar1 2020-12-10T00:40:00+00:00 [running]> 7d635893eab6
+[2020-12-11 00:26:26,215] {import-dag.py:28} INFO - =====Ejecutando Tarea de Importacion =============
+[2020-12-11 00:26:26,217] {import-dag.py:29} INFO - ===== Archivo  =============
+[2020-12-11 00:26:26,218] {import-dag.py:30} INFO - time_series_covid19_confirmed_global.csv
+[2020-12-11 00:26:26,220] {import-dag.py:31} INFO - ===== Tabla  =============
+[2020-12-11 00:26:26,222] {import-dag.py:32} INFO - time_series_covid19_confirmed_global
+[2020-12-11 00:26:26,223] {python_operator.py:114} INFO - Done. Returned value was: None
+[2020-12-11 00:26:26,250] {taskinstance.py:1070} INFO - Marking task as SUCCESS.dag_id=import-dag, task_id=Importar1, execution_date=20201210T004000, start_date=20201211T002625, end_date=20201211T002626
+[2020-12-11 00:26:30,865] {local_task_job.py:102} INFO - Task exited with return code 0

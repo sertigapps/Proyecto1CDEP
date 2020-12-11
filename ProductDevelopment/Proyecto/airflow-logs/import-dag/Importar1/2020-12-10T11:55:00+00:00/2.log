@@ -1,0 +1,32 @@
+[2020-12-11 04:03:33,634] {taskinstance.py:670} INFO - Dependencies all met for <TaskInstance: import-dag.Importar1 2020-12-10T11:55:00+00:00 [queued]>
+[2020-12-11 04:03:33,663] {taskinstance.py:670} INFO - Dependencies all met for <TaskInstance: import-dag.Importar1 2020-12-10T11:55:00+00:00 [queued]>
+[2020-12-11 04:03:33,664] {taskinstance.py:880} INFO - 
+--------------------------------------------------------------------------------
+[2020-12-11 04:03:33,665] {taskinstance.py:881} INFO - Starting attempt 2 of 2
+[2020-12-11 04:03:33,666] {taskinstance.py:882} INFO - 
+--------------------------------------------------------------------------------
+[2020-12-11 04:03:33,692] {taskinstance.py:901} INFO - Executing <Task(PythonOperator): Importar1> on 2020-12-10T11:55:00+00:00
+[2020-12-11 04:03:33,701] {standard_task_runner.py:54} INFO - Started process 3320 to run task
+[2020-12-11 04:03:33,742] {standard_task_runner.py:77} INFO - Running: ['airflow', 'run', 'import-dag', 'Importar1', '2020-12-10T11:55:00+00:00', '--job_id', '410', '--pool', 'default_pool', '--raw', '-sd', 'DAGS_FOLDER/import-dag.py', '--cfg_path', '/tmp/tmpiko6lo7w']
+[2020-12-11 04:03:33,746] {standard_task_runner.py:78} INFO - Job 410: Subtask Importar1
+[2020-12-11 04:03:33,825] {logging_mixin.py:112} INFO - Running %s on host %s <TaskInstance: import-dag.Importar1 2020-12-10T11:55:00+00:00 [running]> d31552e451f4
+[2020-12-11 04:03:33,870] {import-dag.py:31} INFO - =====Ejecutando Tarea de Importacion =============
+[2020-12-11 04:03:33,871] {import-dag.py:32} INFO - ===== Archivo  =============
+[2020-12-11 04:03:33,872] {import-dag.py:33} INFO - time_series_covid19_confirmed_global.csv
+[2020-12-11 04:03:33,873] {import-dag.py:34} INFO - ===== Tabla  =============
+[2020-12-11 04:03:33,874] {import-dag.py:35} INFO - time_series_covid19_confirmed_global
+[2020-12-11 04:03:33,891] {taskinstance.py:1150} ERROR - 'Variable 127.0.0.1 does not exist'
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 984, in _run_raw_task
+    result = task_copy.execute(context=context)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/operators/python_operator.py", line 113, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/operators/python_operator.py", line 118, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/import-dag.py", line 36, in importarCsv
+    host = Variable.get("127.0.0.1")
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/variable.py", line 117, in get
+    raise KeyError('Variable {} does not exist'.format(key))
+KeyError: 'Variable 127.0.0.1 does not exist'
+[2020-12-11 04:03:33,902] {taskinstance.py:1194} INFO - Marking task as FAILED. dag_id=import-dag, task_id=Importar1, execution_date=20201210T115500, start_date=20201211T040333, end_date=20201211T040333
+[2020-12-11 04:03:38,611] {local_task_job.py:102} INFO - Task exited with return code 1

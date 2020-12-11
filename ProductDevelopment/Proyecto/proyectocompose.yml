@@ -1,0 +1,89 @@
+version: '3.3'
+services:
+  postgres:
+    image: postgres:12
+    environment:
+      - POSTGRES_USER=airflow
+      - POSTGRES_PASSWORD=airflow
+      - POSTGRES_DB=airflow
+    ports:
+      - "5433:5432"
+  scheduler:
+    image: apache/airflow
+    restart: always
+    depends_on:
+      - postgres
+      - webserver
+    env_file:
+      - .env
+    ports:
+      - "8793:8793"
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./airflow-logs:/opt/airflow/logs
+    command: scheduler
+    healthcheck:
+      test: ["CMD-SHELL", "[ -f /usr/local/airflow/airflow-webserver.pid ]"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+  webserver:
+    image: apache/airflow
+    hostname: webserver
+    restart: always
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./scripts:/opt/airflow/scripts
+      - ./airflow-logs:/opt/airflow/logs
+      - ./data:/data
+    ports:
+      - "8080:8080"
+    entrypoint: ./scripts/airflow-entrypoint.sh
+    healthcheck:
+      test: ["CMD-SHELL", "[ -f /usr/local/airflow/airflow-webserver.pid ]"]
+      interval: 30s
+      timeout: 30s
+      retries: 32
+  db:
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      # Para no usar Root
+      MYSQL_USER: 'user'
+      # Password para conectarse
+      MYSQL_PASSWORD: 'PD2020GALILEO'
+      # Password para conectarse como root
+      MYSQL_ROOT_PASSWORD: 'PD2020GALILEO'
+    ports:
+      # <Puerto expuesto> : < puerto de MySQL adentro del container>
+      - '3306:3306'
+    expose:
+      # Abrir puerto 3306 en el contenedor
+      - '3306'
+      # donde se va a guardar la info
+    volumes:
+      - my-db:/Users/luisgarcia/Maestria/ProductDevelopment/Parcial1/mysql
+  rstudios:
+    image: dceoy/rstudio-server
+    ports:
+      - 8787:8787
+    volumes:
+      - rstudio-server-data:/Users/luisgarcia/Maestria/ProductDevelopment/Parcial1/mysql
+    working_dir: /home/rstudio
+    entrypoint:
+      - /usr/lib/rstudio-server/bin/rserver
+    command:
+      - --server-daemonize=0
+      - --server-app-armor-enabled=0
+    depends_on:
+      - db
+    
+volumes:
+  my-db:
+  rstudio-server-data:
